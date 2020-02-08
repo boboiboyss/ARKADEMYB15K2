@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  
+    <title>Arkademy Bootcamp</title>
+</head>
+
+<body>
+    <div class="container-fluid" id="shadow">
+        <nav class="navbar navbar-expand-lg navbar-link bg-link">
+            <img class="arkademy-logo arkademy-size" src="img/arkademy.png" alt="" />
+            <div class=" col-6 col-sm-10">
+                <h3>ARKADEMY BOOTCAMP</h3>
+            </div>
+            <div>
+                <button type="button" id="add" class="btn" data-toggle="modal" data-target="#modal-add" style="background: orange; color:white">
+                   ADD
+                </button>
+            </div>
+        </nav>
+    </div>
+    <div class="container pt-5">
+        <div class="card" id="shadow">
+            <div class="card-body">
+                <table class="table" style="text-align: center;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Work</th>
+                            <th scope="col">Salary</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+                       <script>
+                           var nama = [
+                               {id:'1', name:'Bintang', work:'Backend Dev', salary:'12.000.000'},
+                               {id:'2', name:'Tasya', work:'Backend Dev', salary:'12.000.000'},
+                               {id:'3', name:'Poetra', work:'Backend Dev', salary:'12.000.000'},
+                               {id:'4', name:'Joko', work:'Fronend Dev', salary:'10.000.000'},
+
+
+                    
+                           ]
+                           
+                        for(i=0; i<nama.length; i++){
+                            document.write("<tr><td>" + nama[i]['name'] +"</td>");
+                            document.write("<td>" + nama[i]['work'] +"</td>");
+                            document.write("<td> Rp. " + nama[i]['salary'] +"</td>");
+                            document.write("<td><i class='fa fa-edit' data-toggle='modal' data-target='#modal-edit' id='update' style='cursor:pointer'></i> | <i class='fa fa-trash' id='delete' data-toggle='modal' data-target='#modal-delete' style='cursor:pointer'></i></td></tr>");
+                        }
+                           
+                        </script>
+                   
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Add -->
+   
+    <div class="modal fade" id="modal-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ADD</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="proses_save.php" name="form-data"  method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control nama" name="product" placeholder="Name" />
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control work" name="id_work">
+                                <option value="0">Work</option>
+                                <option value="1">Frontend Developer</option>
+                                <option value="2">Backend Developer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control kategory" name="id_kategori">
+                                <option value="0">Kategori</option>
+                                <option value="1">10.000.000</option>
+                                <option value="2">12.000.000</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn" style="background:orange;color:white">ADD</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Hapus -->
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><br/>
+                    
+                    <h1 class="modal-title text-center" style="color:#66CDAA"><i class="fa fa-check-circle-o fa-5x"></i></h1>
+                    <h3 class="text-center nama">Berhasil Dihapus!</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+$("i#update").click(function(){
+            // var id = $(this).attr("id_nama");
+            // var nama = $(this).attr("nama");
+            // var work = $(this).attr("work");
+            // var kategori = $(this).attr("kategory");
+
+            $("div#modal-add").attr("id", "modal-edit");
+            $(".modal-header h5 ").text('EDIT DATA');
+            $(".modal-footer button.btn").text("EDIT");
+
+            $("form").attr("action", "proses_edit.php");
+            $("div.modal-body div.form-group select.work").val(1);
+            $("div.modal-body div.form-group select.kategory").val(1);
+            $("div.modal-body div.form-group input.nama").val('Joko');
+            // $("div.modal-body div.form-group input.id").val(id);
+            
+
+        })
+
+        $("button#add").click(function(){
+            $("div#modal-edit").attr("id", "modal-add");
+            $(".modal-header h5 ").text('ADD DATA');
+            $(".modal-footer button.btn").text("ADD");
+            $("div.modal-body div.form-group select.work").val(0);
+            $("div.modal-body div.form-group select.kategori").val(0);
+            $("div.modal-body div.form-group input.nama").val("");
+            $("form").attr("action", "proses_save.php");
+
+        })
+
+        $("i#delete").click(function(){
+            // var id= $(this).attr('id_nama');
+            // var nama = $(this).attr('nama');
+            $("div.modal-body h3.nama").text("Data joko telah berhasil dihapus")
+            $("div#delete").attr("id", "modal-delete");
+
+            // setTimeout(function(){
+            //     document.location.href='proses_delete.php?id_nama=' +id;
+            // }, 3000);
+
+            
+        })
+
+    </script>
+</body>
+
+</html>

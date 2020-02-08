@@ -1,0 +1,1 @@
+select t1.name, t2.work, t3.salary from tb_nama as t1 inner join tb_work as t2 on t1.id_work = t2.id INNER join tb_kategori as t3 on t1.id_salary = t3.id

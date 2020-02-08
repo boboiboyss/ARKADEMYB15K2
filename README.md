@@ -1,0 +1,1 @@
+JSON(JavaScript Object Notation) adalah sebuah file format untuk pertukaran data, yang berisi pasangan antara key dan value. Kegunaannya adalah untuk format pertukaran data dan dapat digunkan pada beragam bahas pemrograman.
